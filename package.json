@@ -2,7 +2,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "dev": "set REACT_NATIVE_PACKAGER_HOSTNAME=192.168.137.1&& expo start",
+    "serve": "set REACT_NATIVE_PACKAGER_HOSTNAME=192.168.137.1&& expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",

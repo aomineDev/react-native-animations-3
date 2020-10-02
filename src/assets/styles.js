@@ -1,16 +1,27 @@
-import { StyleSheet } from 'react-native'
-import Constans from 'expo-constants'
+import { StyleSheet, Dimensions } from 'react-native'
+import Constants from 'expo-constants'
+
+const { width, height } = Dimensions.get('screen')
 
 export default StyleSheet.create({
-  container: {
+  scene: {
     flex: 1
   },
-  textHeader: {
-    marginVertical: 20,
-    textAlign: 'center',
-    fontSize: 16,
+  container: {
+    flex: 1,
+    paddingTop: Constants.statusBarHeight
+  },
+  wrapper: {
+    flex: 1,
+  },
+  title: {
+    paddingLeft: 20,
+    paddingTop: 16,
+    paddingBottom: 4,
+    backgroundColor: '#463ED5',
+    color: '#fff',
     fontWeight: 'bold',
-    color: '#fff'
+    fontSize: 24
   },
   buttons: {
     paddingTop: 20,
@@ -41,6 +52,14 @@ export default StyleSheet.create({
     width: 300,
     height: 300,
     borderRadius: 40
+  },
+  input: {
+    marginBottom: 30,
+    width: width / 1.3,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    textAlign: 'center',
+    borderRadius: 30,
+    padding: 15
   }
 })
 

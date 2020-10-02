@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { View, TouchableOpacity, Text, Animated } from 'react-native'
+import { View, Animated } from 'react-native'
 
 import WrapperOne from 'wrappers/wrapperOne'
 import BoxOne from 'components/BoxOne'
@@ -7,29 +7,47 @@ import Button from 'components/Button'
 
 import styles from 'assets/styles'
 
-export default function AnimationOne () {
+export default function AnimationThree () {
   const alignment = useRef(new Animated.Value(0)).current
+  const scaleAnimation = useRef(new Animated.Value(0.5)).current
 
   function boxAnimationOn () {
-    Animated.spring(alignment, {
-      toValue: 150,
-      friction: 3,
-      tension: 160,
-      useNativeDriver: true
-    }).start()
+    Animated.parallel([
+      Animated.timing(alignment, {
+        toValue: 120,
+        duration: 500,
+        useNativeDriver: false
+      }),
+      Animated.spring(scaleAnimation, {
+        toValue: 1.2,
+        friction: 2,
+        tension: 180,
+        useNativeDriver: false
+      })
+    ]).start()
   }
 
   function boxAnimationOff () {
-    Animated.spring(alignment, {
-      toValue: 0,
-      useNativeDriver: true
-    }).start()
+    Animated.parallel([
+      Animated.timing(alignment, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: false
+      }),
+      Animated.spring(scaleAnimation, {
+        toValue: 0.5,
+        useNativeDriver: false
+      })
+    ]).start()
   }
 
   const animatedBox = {
     transform: [
       {
         translateY: alignment
+      },
+      {
+        scale: scaleAnimation
       }
     ]
   }
@@ -37,7 +55,7 @@ export default function AnimationOne () {
   return (
     <WrapperOne>
       <View style={styles.buttons}>
-      <Button
+        <Button
           buttonStyle={styles.btnOne}
           text='Animaiton ON'
           handlePress={boxAnimationOn}
